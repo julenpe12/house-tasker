@@ -28,4 +28,7 @@ TODO
 # Install Django
 ```bash
 pip install django
+
+# To process user profile images we need Pillow
+python -m pip install Pillow
 ```
