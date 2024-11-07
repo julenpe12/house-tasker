@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.views import LoginView
 
 def home(request):
     return HttpResponse("Welcome to the House Task Handler Home Page")
@@ -33,3 +34,7 @@ def resource_edit(request, resource_id):
 
 def resource_delete(request, resource_id):
     return HttpResponse(f"Delete resource {resource_id}")
+
+class CustomLoginView(LoginView):
+    template_name = 'appHouseTasker/login.html'  # Make sure to create this template
+    redirect_authenticated_user = True
