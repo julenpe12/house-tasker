@@ -2,7 +2,7 @@
 
 from django.urls import path
 from . import views
-from .views import CustomLoginView
+from .views import CustomLoginView, RegisterView
 
 urlpatterns = [
     path('', views.home, name='home'),  # Home page for task handling
@@ -17,5 +17,7 @@ urlpatterns = [
     path('resources/<int:resource_id>/', views.resource_detail, name='resource_detail'),  # View resources details
     path('resources/<int:resource_id>/edit/', views.resource_edit, name='resource_edit'),  # Edit a resources
     path('resources/<int:resource_id>/delete/', views.resource_delete, name='resource_delete'),  # Delete a resources
-    path('login/', CustomLoginView.as_view(), name='login'),
+    
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('accounts/register/', RegisterView.as_view(), name='register'),
 ]

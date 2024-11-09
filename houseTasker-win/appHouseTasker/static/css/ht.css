@@ -1,0 +1,65 @@
+/* General Layout */
+body, html {
+    font-family: Arial, sans-serif; /* Set a default font; can be adjusted in fonts.css */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f6f9;
+}
+
+header, footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+h2, h3 {
+    color: #4CAF50;
+}
+
+main {
+    padding: 2em;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin: 1em 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+}
+
+nav a:hover {
+    background-color: #3e8e41;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    margin-top: 2em;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    main, aside {
+        padding: 1em;
+    }
+}

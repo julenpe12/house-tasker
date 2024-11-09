@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>HouseTasker - Home</title>
+		<link rel="icon" href="resources/favicon.png">
+		<meta charset="UTF-8">
+		<meta name="keywords" content="HouseTasker, tasks, manager, home, house-tasker">
+		<meta name="description" content="A web page to help you organize house tasks along your roomates">
+		<meta name="author" content="Julen Peña">
+		<link rel="stylesheet" href="{% static 'css/ht.css' %}">
+		<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+		
+		<!-- https://www.w3schools.com/html/html_head.asp -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	
+	<!-- https://javascript.plainenglish.io/20-header-design-html-for-website-c5cd71af6401 -->
+	<body>
+		<header>
+			<h1> {% block header-title %}HouseTasker{% endblock %}</h1>
+			<nav>
+				{% block nav %}
+				<a href="home.html">Home</a>
+				<a href="viewTasks.html">Ver tareas</a>
+				<a href="makeTask.html">Crear tarea</a>
+				<a href="FAQ.html">FAQ</a>
+				{% endblock %}
+			</nav>
+		</header>
+		<main>
+			{% block main %}
+			
+			{% endblock %}
+		</main>
+		
+		<footer>
+			<p>© 2024 HouseTasker. Todos los derechos reservados.</p>
+		</footer>
+	
+	</body>
+</html>

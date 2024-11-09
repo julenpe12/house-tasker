@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block nav %}
+
+{% endblock %}
+
+{% block main %}
+<form action="{% url 'register' %}" method="post">
+	{% csrf_token %}
+	<!-- Logo of the web -->
+	<div class="imageContainer">
+		<!-- <img src="resources/favicon.png" alt="Logo" class="logo"> -->
+	</div>
+	
+	<!-- Login form -->
+	<fieldset class="loginFieldset">
+		<legend>Iniciar sesión</legend>
+		{% csrf_token %}
+		{{ form.as_p }}  <!-- Renders the form fields with Django's default styling -->
+		<button type="submit">Register</button>
+	</fieldset>
+</form>
+{% endblock %}

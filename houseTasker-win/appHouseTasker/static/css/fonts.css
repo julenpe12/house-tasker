@@ -1,0 +1,41 @@
+/* Font Settings */
+body {
+    font-family: 'Roboto', sans-serif; /* Change to preferred font type */
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+p, label, input, button {
+    font-size: 1em;
+}
+
+button {
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    p, label, input, button {
+        font-size: 0.9em;
+    }
+}

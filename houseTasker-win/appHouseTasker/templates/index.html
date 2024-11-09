@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div>
+	<section>
+		<h2 class="sectionTitle">MOTD</h2>
+		<p class="sectionText">Example message of the day!!</p>
+	</section>
+	<section>
+		<h2 class="sectionTitle">Pinned Task</h2>
+		<p class="sectionText">This is a very important task!! Please do</p>
+	</section>
+</div>
+<aside>
+	<h2 class="asideH1">Filter by day</h2>
+	<form>
+		<input type="date" name="fecha" id="fecha"><button type="submit">Buscar</button>
+	</form>
+	<section id="filteredTasks">
+		<h3 class="asideH3">Results:</h3><br>
+		<p><a href="viewTask.html">Example filtered task 1</a></p>
+		<p><a href="viewTask.html">Example filtered task 2</a></p>
+		<p><a href="viewTask.html">Example filtered task 3</a></p>
+		<p><a href="viewTask.html">Example filtered task 4</a></p>
+	</section>
+</aside>
+{% endblock %}

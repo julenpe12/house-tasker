@@ -1,0 +1,45 @@
+/* Login Page Specific */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.imageContainer {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+fieldset.loginFieldset {
+    border: 1px solid #ddd;
+    padding: 1em;
+    background-color: #f9f9f9;
+}
+
+legend {
+    font-size: 1.2em;
+    color: #4CAF50;
+}
+
+button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 0.5em;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.indexText {
+    font-size: 0.9em;
+    color: #666;
+}

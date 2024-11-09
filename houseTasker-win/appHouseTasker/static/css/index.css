@@ -1,0 +1,33 @@
+/* MOTD Section */
+.sectionTitle {
+    font-size: 1.5em;
+    color: #4CAF50;
+    margin-bottom: 0.5em;
+}
+
+.sectionText {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Filter Sidebar */
+aside {
+    padding: 1em;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    margin-top: 1em;
+}
+
+.asideH1 {
+    color: #4CAF50;
+    font-size: 1.3em;
+}
+
+#filteredTasks a {
+    text-decoration: none;
+    color: #333;
+}
+
+#filteredTasks a:hover {
+    color: #4CAF50;
+}
