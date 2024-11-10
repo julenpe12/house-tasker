@@ -1,7 +1,6 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
-
-# Create your models here.
 
 class CustomUser(AbstractUser):
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
@@ -9,7 +8,6 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
-    
 
 class Resource(models.Model):
     CATEGORY_CHOICES = [
@@ -27,3 +25,26 @@ class Resource(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.quantity} disponibles)"
+
+class Task(models.Model):
+    LOW = 'Low'
+    MEDIUM = 'Medium'
+    HIGH = 'High'
+
+    PRIORITY_CHOICES = [
+        (LOW, 'Low'),
+        (MEDIUM, 'Medium'),
+        (HIGH, 'High'),
+    ]
+
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES, default=MEDIUM)
+    due_date = models.DateTimeField(default=timezone.now)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.title} ({self.due_date})"
+
+    class Meta:
+        ordering = ['-due_date', 'priority']
