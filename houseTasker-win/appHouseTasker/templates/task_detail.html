@@ -18,7 +18,12 @@
 		<p><strong>Status:</strong> {% if task.completed %}Completed{% else %}Pending{% endif %}</p>
 	  
 		<a href="{% url 'task_list' %}">Back to Task List</a>
+		
+		<form action="{% url 'task_delete' task.id %}" method="post">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-danger">Borrar</button>
+		</form>
 	{% else %}
-		<p>No existe este empleado.</p>
+		<p>No existe esta tarea.</p>
 	{% endif %}
 {% endblock %}
