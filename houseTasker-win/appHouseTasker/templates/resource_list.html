@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 
-{% block main %}
-  <h2>Lista Recursos</h2>
-  
-  <ul>
-    {% for resource in resources %}
-      <li>{{ resource.name }} - {{ resource.quantity }} (Categoría: {{ resource.get_category_display }})</li>
-    {% empty %}
-      <li>No se encontraron recursos.</li>
-    {% endfor %}
-  </ul>
+{% load static %}
 
-  <a href="{% url 'resource_create' %}">Agregar Recursos</a>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/resource_list.css' %}">
+{% endblock %}
+
+{% block main %}
+	<h2>Lista Recursos</h2>
+  
+	<div class="resource-container">
+	  {% for resource in resources %}
+		<div class="resource-item">
+		  <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+		  <span class="quantity-box">{{ resource.quantity }}</span><br>
+		  <span class="category">Categoría: {{ resource.get_category_display }}</span>
+		</div>
+	  {% empty %}
+		<p>No se encontraron recursos.</p>
+	  {% endfor %}
+	</div>
+	
+	<div class="add-resource-button-container">
+	  <a href="{% url 'resource_create' %}" class="add-resource-button">Agregar Recurso</a>
+	</div>
 {% endblock %}

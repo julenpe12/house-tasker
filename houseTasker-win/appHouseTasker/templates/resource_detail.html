@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block main %}
+	{% if resource %}
+		<h2>Resource Detail</h2>
+		<h3>{{ resource.name }}</h3>
+		<p><strong>Cantidad:</strong> {{ resource.quantity }}</p>
+		<p><strong>Categoría:</strong> {{ resource.get_category_display }}</p>
+		<p><strong>Descripción:</strong> {{ resource.description }}</p>
+		
+		<a href="{% url 'resource_list' %}">Back to Resource List</a>
+		
+		<form action="{% url 'resource_delete' resource.id %}" method="post">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-danger">Borrar</button>
+		</form>
+	{% else %}
+		<p>No existe esta tarea.</p>
+	{% endif %}
+{% endblock %}

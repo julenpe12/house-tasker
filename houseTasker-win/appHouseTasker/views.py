@@ -69,7 +69,8 @@ def resource_create(request):
 
 @login_required
 def resource_detail(request, resource_id):
-    return HttpResponse(f"Viewing resource {resource_id}")
+    resource = get_object_or_404(Resource, pk=resource_id)
+    return render(request, 'resource_detail.html', {'resource': resource})
 
 @login_required
 def resource_edit(request, resource_id):
