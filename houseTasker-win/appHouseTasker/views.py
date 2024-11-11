@@ -34,11 +34,20 @@ def task_delete(request, task_id):
 
 @login_required
 def resource_list(request):
-    return HttpResponse("Here is a list of resources")
+    resources = Resource.objects.all()
+    return render(request, 'resource_list.html', {'resources': resources})
 
 @login_required
 def resource_create(request):
-    return HttpResponse("Create a new resource")
+    if request.method == 'POST':
+        form = ResourceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('resource_list')
+    else:
+        form = ResourceForm()
+
+    return render(request, 'resource_create.html', {'form': form})
 
 @login_required
 def resource_detail(request, resource_id):
@@ -71,18 +80,3 @@ class RegisterView(View):
             login(request, user)  # Log the user in after registration
             return redirect(reverse_lazy('home'))  # Redirect to the homepage or another page
         return render(request, self.template_name, {'form': form})
-
-def resource_create(request):
-    if request.method == 'POST':
-        form = ResourceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('resource_list')
-    else:
-        form = ResourceForm()
-
-    return render(request, 'resource_create.html', {'form': form})
-
-def resource_list(request):
-    resources = Resource.objects.all()
-    return render(request, 'resource_list.html', {'resources': resources})
