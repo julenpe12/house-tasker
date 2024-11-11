@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h2>Agregar Recurso</h2>
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Agregar Recurso</button>
+  </form>
+
+  <a href="{% url 'resource_list' %}">Lista de Recursos</a>
+{% endblock %}

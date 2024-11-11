@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h2>Lista Recursos</h2>
+  
+  <ul>
+    {% for resource in resources %}
+      <li>{{ resource.name }} - {{ resource.quantity }} (Categoría: {{ resource.get_category_display }})</li>
+    {% empty %}
+      <li>No se encontraron recursos.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'resource_create' %}">Agregar Recursos</a>
+{% endblock %}

@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ResourceForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views import View
+from .models import Resource
 
 @login_required
 def home(request):
@@ -70,3 +71,18 @@ class RegisterView(View):
             login(request, user)  # Log the user in after registration
             return redirect(reverse_lazy('home'))  # Redirect to the homepage or another page
         return render(request, self.template_name, {'form': form})
+
+def resource_create(request):
+    if request.method == 'POST':
+        form = ResourceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('resource_list')
+    else:
+        form = ResourceForm()
+
+    return render(request, 'resource_create.html', {'form': form})
+
+def resource_list(request):
+    resources = Resource.objects.all()
+    return render(request, 'resource_list.html', {'resources': resources})
