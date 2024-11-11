@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 
-{% block main %}
-  <h2>Lista Tareas</h2>
-  
-  <ul>
-    {% for task in tasks %}
-      <li><a href="{% url 'task_detail' task.id %}">{{ task.title }}</a> (Prioridad: {{ task.get_priority_display }})</li>
-    {% empty %}
-      <li>No se encontraron tareas.</li>
-    {% endfor %}
-  </ul>
+{% load static %}
 
-  <a href="{% url 'task_create' %}">Agregar Tarea</a>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/task_list.css' %}">
+{% endblock %}
+
+{% block main %}
+<h2>Lista de Tareas</h2>
+
+<div class="task-container">
+  {% for task in tasks %}
+    <div class="task-item">
+      <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+      <span class="priority">Prioridad: {{ task.get_priority_display }}</span>
+    </div>
+  {% empty %}
+    <p>No se encontraron tareas.</p>
+  {% endfor %}
+</div>
+
+<div class="add-task-button-container">
+  <a href="{% url 'task_create' %}" class="add-task-button">Agregar Tarea</a>
+</div>
 {% endblock %}
