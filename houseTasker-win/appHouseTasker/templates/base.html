@@ -22,8 +22,7 @@
 			<nav>
 				{% block nav %}
 				<a href="home.html">Home</a>
-				<a href="viewTasks.html">Ver tareas</a>
-				<a href="makeTask.html">Crear tarea</a>
+				<a href="{% url 'task_list' %}">Tareas</a>
 				<a href="{% url 'resource_list' %}">Recursos</a>
 				<a href="FAQ.html">FAQ</a>
 				{% endblock %}

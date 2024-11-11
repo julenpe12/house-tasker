@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h2>Lista Tareas</h2>
+  
+  <ul>
+    {% for task in tasks %}
+      <li>{{ task.title }} (Prioridad: {{ task.get_priority_display }})</li>
+    {% empty %}
+      <li>No se encontraron tareas.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'task_create' %}">Agregar Tarea</a>
+{% endblock %}

@@ -7,6 +7,9 @@ from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views import View
 from .models import Resource
+from .models import Task
+from .forms import TaskForm
+from django.urls import reverse
 
 @login_required
 def home(request):
@@ -14,11 +17,20 @@ def home(request):
 
 @login_required
 def task_list(request):
-    return HttpResponse("Here is a list of tasks")
+    tasks = Task.objects.all()
+    return render(request, 'task_list.html', {'tasks': tasks})
 
 @login_required
 def task_create(request):
-    return HttpResponse("Create a new task")
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('task_list'))
+    else:
+        form = TaskForm()
+    
+    return render(request, 'task_create.html', {'form': form})
 
 @login_required
 def task_detail(request, task_id):
