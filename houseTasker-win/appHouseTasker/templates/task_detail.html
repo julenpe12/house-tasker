@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+	{% if task %}
+		<h2>Task Detail</h2>
+		<h3>{{ task.title }}</h3>
+	
+		<p><strong>Description:</strong> {{ task.description|default:"No description provided" }}</p>
+	  
+		<p><strong>Priority:</strong> 
+			{% if task.priority == task.LOW %}Low
+			{% elif task.priority == task.MEDIUM %}Medium
+			{% elif task.priority == task.HIGH %}High
+		{% endif %}
+		</p>
+	  
+		<p><strong>Due Date:</strong> {{ task.due_date|date:"F j, Y, g:i a" }}</p>
+	  
+		<p><strong>Status:</strong> {% if task.completed %}Completed{% else %}Pending{% endif %}</p>
+	  
+		<a href="{% url 'task_list' %}">Back to Task List</a>
+	{% else %}
+		<p>No existe este empleado.</p>
+	{% endif %}
+{% endblock %}

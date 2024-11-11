@@ -5,7 +5,7 @@
   
   <ul>
     {% for task in tasks %}
-      <li>{{ task.title }} (Prioridad: {{ task.get_priority_display }})</li>
+      <li><a href="{% url 'task_detail' task.id %}">{{ task.title }}</a> (Prioridad: {{ task.get_priority_display }})</li>
     {% empty %}
       <li>No se encontraron tareas.</li>
     {% endfor %}
