@@ -5,12 +5,12 @@ from .models import CustomUser, Task, Resource
 class CustomUserCreationForm(UserCreationForm): 
     class Meta(UserCreationForm): 
         model = CustomUser 
-        fields = UserCreationForm.Meta.fields + ("profile_image","role",)
+        fields = ("username", "email", "profile_image")
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = CustomUser
-        fields = ("username", "email", "profile_image", "role")
+        fields = ("username", "email", "profile_image")
 
 class ResourceForm(forms.ModelForm):
     class Meta:

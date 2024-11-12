@@ -94,9 +94,9 @@ class RegisterView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)  # Add request.FILES here to handle files
         if form.is_valid():
-            user = form.save()  # Save the new user
-            login(request, user)  # Log the user in after registration
-            return redirect(reverse_lazy('home'))  # Redirect to the homepage or another page
+            user = form.save()
+            login(request, user)
+            return redirect(reverse_lazy('home'))
         return render(request, self.template_name, {'form': form})
