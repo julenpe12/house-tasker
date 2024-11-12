@@ -6,8 +6,7 @@ from .forms import CustomUserCreationForm, ResourceForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views import View
-from .models import Resource
-from .models import Task
+from .models import Resource, Task
 from .forms import TaskForm
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -26,7 +25,9 @@ def task_create(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.created_by = request.user
+            task.save()
             return redirect(reverse('task_list'))
     else:
         form = TaskForm()

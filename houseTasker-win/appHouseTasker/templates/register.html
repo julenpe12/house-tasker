@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<form action="{% url 'register' %}" method="post">
+<form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	<!-- Logo of the web -->
 	<div class="imageContainer">
@@ -15,7 +15,6 @@
 	<!-- Login form -->
 	<fieldset class="loginFieldset">
 		<legend>Iniciar sesión</legend>
-		{% csrf_token %}
 		{{ form.as_p }}  <!-- Renders the form fields with Django's default styling -->
 		<button type="submit">Register</button>
 	</fieldset>

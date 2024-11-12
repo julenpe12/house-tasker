@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block main %}
 	{% if task %}
 		<h2>Task Detail</h2>
@@ -16,6 +17,18 @@
 		<p><strong>Due Date:</strong> {{ task.due_date|date:"F j, Y, g:i a" }}</p>
 	  
 		<p><strong>Status:</strong> {% if task.completed %}Completed{% else %}Pending{% endif %}</p>
+
+		<div class="task-creator">
+			<h4>Created by:</h4>
+			<!-- Check if the user has a profile image before rendering it -->
+			{% if task.created_by.profile_image %}
+			<img src="{{ task.created_by.profile_image.url }}" alt="{{ task.created_by.username }}'s profile image" class="profile-img">
+			{% else %}
+			<!-- Fallback image or text if the user doesn't have a profile image -->
+			<img src="{% static 'img/default_pfp.png' %}" alt="Default profile image" class="profile-img">
+			{% endif %}
+			<p>{{ task.created_by.username }}</p>
+		</div>
 	  
 		<a href="{% url 'task_list' %}">Back to Task List</a>
 		
