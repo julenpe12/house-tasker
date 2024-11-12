@@ -14,6 +14,23 @@
     <div class="task-item">
       <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
       <span class="priority">Prioridad: {{ task.get_priority_display }}</span>
+      <div class="task-dates">
+        <span class="start-date">Inicio: {{ task.start_date|date:"d/m/Y H:i" }}</span>
+        <span class="duration">Duración: {{ task.duration }}</span>
+        <span class="end-date">Fin: {{ task.end_date|date:"d/m/Y H:i" }}</span>
+      </div>
+      <div class="task-resources">
+        <strong>Recursos:</strong>
+        {% if task.resources.all %}
+          <ul>
+            {% for resource in task.resources.all %}
+              <li>{{ resource.name }} ({{ resource.quantity }} disponibles)</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No se asignaron recursos a esta tarea.</p>
+        {% endif %}
+      </div>
     </div>
   {% empty %}
     <p>No se encontraron tareas.</p>

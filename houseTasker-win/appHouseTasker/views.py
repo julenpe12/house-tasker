@@ -10,6 +10,7 @@ from .models import Resource, Task
 from .forms import TaskForm
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 @login_required
 def home(request):
@@ -27,11 +28,42 @@ def task_create(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.created_by = request.user
+            
+            # Obtén la información de fechas del formulario
+            start_date = form.cleaned_data['start_date']
+            duration = form.cleaned_data['duration']
+            print(f"Fecha de inicio: {start_date}")
+            print(f"Duración: {duration}")
+            
+            # Calcula la fecha de finalización
+            end_date = start_date + duration
+            print(f"Fecha de fin: {end_date}")
+            
+            # Obtiene los recursos
+            resources = form.cleaned_data['resources']
+            for resource in resources:
+                print(f"Verificando recurso: {resource.name}")
+                overlapping_tasks = 0
+                for resource_task in resource.tasks.all():
+                    print(f" - Comprobando tarea: {resource_task.title}")
+                    # Comprueba si hay solapamiento en las fechas
+                    if not (resource_task.start_date >= end_date or resource_task.start_date + resource_task.duration <= start_date):
+                        overlapping_tasks += 1
+                
+                # Verifica si el recurso está disponible
+                if overlapping_tasks >= resource.quantity:
+                    print(f" - Recurso '{resource.name}' no está disponible en el horario especificado.")
+                    messages.error(request, f"El recurso '{resource.name}' no está disponible en las horas seleccionadas.")
+                    return render(request, 'task_create.html', {'form': form})
+            
+            # Guarda la tarea si todos los recursos están disponibles
             task.save()
-            return redirect(reverse('task_list'))
+            form.save_m2m()  # Guarda la relación ManyToMany
+            print(" - Tarea guardada exitosamente.")
+            return redirect('task_list')
     else:
         form = TaskForm()
-    
+
     return render(request, 'task_create.html', {'form': form})
 
 @login_required

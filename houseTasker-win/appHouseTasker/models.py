@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
@@ -40,13 +41,14 @@ class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES, default=MEDIUM)
-    due_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateTimeField(default=timezone.now)
+    duration = models.DurationField()
     completed = models.BooleanField(default=False)
-
+    resources = models.ManyToManyField('Resource', related_name="tasks", blank=True)
     created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f"{self.title} ({self.due_date})"
+    def end_date(self):
+        return self.start_date + self.duration
 
-    class Meta:
-        ordering = ['-due_date', 'priority']
+    def __str__(self):
+        return f"{self.title} ({self.start_date} - {self.end_date()})"

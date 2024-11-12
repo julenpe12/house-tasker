@@ -22,9 +22,12 @@ class ResourceForm(forms.ModelForm):
         }
 
 class TaskForm(forms.ModelForm):
+    resources = forms.ModelMultipleChoiceField(queryset=Resource.objects.all(), required=False)
+
     class Meta:
         model = Task
-        fields = ['title', 'description', 'priority', 'due_date', 'completed']
+        fields = ['title', 'description', 'priority', 'start_date', 'duration', 'completed', 'resources']
         widgets = {
-            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'duration': forms.TextInput(attrs={'placeholder': 'ej. 01:00:00 para 1 hora'}),
         }

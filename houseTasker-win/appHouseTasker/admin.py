@@ -17,6 +17,14 @@ class CustomUserAdmin(UserAdmin):
         (None, {"fields": ("profile_image",)}),
     )
 
+class ResourceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'quantity', 'category', 'is_available')
+    readonly_fields = ('tasks_list',)
+
+    def tasks_list(self, obj):
+        return ", ".join([task.title for task in obj.tasks.all()])  # Muestra títulos de tareas
+    tasks_list.short_description = "Tareas Asociadas"
+
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Resource)
+admin.site.register(Resource, ResourceAdmin)
 admin.site.register(Task)
