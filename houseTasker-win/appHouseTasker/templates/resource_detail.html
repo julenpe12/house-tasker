@@ -13,6 +13,10 @@
 			{% csrf_token %}
 			<button type="submit" class="btn btn-danger">Borrar</button>
 		</form>
+
+		<div class="edit-resource-button-container">
+			<a href="{% url 'resource_edit' resource.id %}" class="edit-resource-button">Editar Recurso</a>
+		</div>
 	{% else %}
 		<p>No existe esta tarea.</p>
 	{% endif %}

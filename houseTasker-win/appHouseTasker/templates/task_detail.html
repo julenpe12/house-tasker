@@ -34,13 +34,16 @@
 			{% endif %}
 			<p>{{ task.created_by.username }}</p>
 		</div>
-	  
+
 		<a href="{% url 'task_list' %}">Back to Task List</a>
 		
 		<form action="{% url 'task_delete' task.id %}" method="post">
 			{% csrf_token %}
 			<button type="submit" class="btn btn-danger">Borrar</button>
 		</form>
+		<div class="edit-task-button-container">
+			<a href="{% url 'task_edit' task.id %}" class="edit-task-button">Editar Tarea</a>
+		</div>
 	{% else %}
 		<p>No existe esta tarea.</p>
 	{% endif %}

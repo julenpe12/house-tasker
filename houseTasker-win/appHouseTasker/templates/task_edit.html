@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h2>Editar Tarea</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar cambios</button>
+    </form>
+    <a href="{% url 'task_list' %}">Lista de tareas</a>
+{% endblock %}

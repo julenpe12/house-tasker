@@ -13,7 +13,7 @@ urlpatterns = [
     path('tasks/<int:task_id>/', views.task_detail, name='task_detail'),  # View task details
     path('tasks/<int:task_id>/edit/', views.task_edit, name='task_edit'),  # Edit a task
     path('tasks/<int:task_id>/delete/', views.task_delete, name='task_delete'),  # Delete a task
-
+    
     path('resources/', views.resource_list, name='resource_list'),  # List all resources
     path('resources/create/', views.resource_create, name='resource_create'),  # Create a new resources
     path('resources/<int:resource_id>/', views.resource_detail, name='resource_detail'),  # View resources details

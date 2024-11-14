@@ -73,7 +73,42 @@ def task_detail(request, task_id):
 
 @login_required
 def task_edit(request, task_id):
-    return HttpResponse(f"Edit task {task_id}")
+    # Obtener la tarea o mostrar 404 si no existe
+    task = get_object_or_404(Task, id=task_id)
+
+    # Si se envía el formulario con datos, se procesa el formulario
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            # Extraer los datos de la tarea y recursos
+            start_date = form.cleaned_data['start_date']
+            duration = form.cleaned_data['duration']
+            end_date = start_date + duration
+            resources = form.cleaned_data['resources']
+
+            # Validación para evitar solapamientos de recursos
+            for resource in resources:
+                overlapping_tasks = 0  # Contador para verificar solapamientos
+                for resource_task in resource.tasks.exclude(id=task.id):  # Excluye la tarea actual
+                    # Comprobamos solapamientos de fecha entre la tarea editada y otras tareas asignadas al recurso
+                    if not (resource_task.start_date >= end_date or resource_task.start_date + resource_task.duration <= start_date):
+                        overlapping_tasks += 1
+
+                # Verificar si el recurso está disponible en el horario solicitado
+                if overlapping_tasks >= resource.quantity:
+                    messages.error(request, f"El recurso '{resource.name}' no está disponible en el horario especificado.")
+                    return render(request, 'task_edit.html', {'form': form, 'task': task})
+            
+            # Si no hay solapamientos, guarda la tarea actualizada
+            task = form.save(commit=False)
+            task.save()
+            form.save_m2m()  # Guarda la relación ManyToMany
+            messages.success(request, "La tarea ha sido actualizada exitosamente.")
+            return redirect('task_list')  # Redirigir a la lista de tareas después de editar
+    else:
+        form = TaskForm(instance=task)  # Formulario con los datos de la tarea actual
+
+    return render(request, 'task_edit.html', {'form': form, 'task': task})
 
 @login_required
 def task_delete(request, task_id):
@@ -107,7 +142,18 @@ def resource_detail(request, resource_id):
 
 @login_required
 def resource_edit(request, resource_id):
-    return HttpResponse(f"Edit resource {resource_id}")
+    resource = get_object_or_404(Resource, id=resource_id)
+
+    if request.method == 'POST':
+        form = ResourceForm(request.POST, instance=resource)
+        if form.is_valid():
+            form.save()
+            return redirect('resource_list')
+    else:
+        form = ResourceForm(instance=resource)
+
+    return render(request, 'resource_edit.html', {'form': form, 'resource': resource})
+
 
 @login_required
 def resource_delete(request, resource_id):
