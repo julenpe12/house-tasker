@@ -111,7 +111,11 @@ def resource_edit(request, resource_id):
 
 @login_required
 def resource_delete(request, resource_id):
-    return HttpResponse(f"Delete resource {resource_id}")
+    resource = get_object_or_404(Resource, pk=resource_id)
+    if request.method == 'POST':
+        resource.delete()
+        return redirect('resource_list')
+    return render(request, 'resource_delete.html', {'resource': resource})
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'  # Make sure to create this template

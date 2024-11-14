@@ -1,0 +1,9 @@
+{% block main %}
+	{% if resource %}
+		<h2>Resource Delete</h2>
+		<p>El recurso no se ha podido eliminar.</p>
+		<a href="{% url 'view_resources' %}">Volver a la lista de recursos</a>
+	{% else %}
+		<p>No existe este recurso.</p>
+	{% endif %}
+{% endblock %}
