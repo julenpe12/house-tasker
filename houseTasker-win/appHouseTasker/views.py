@@ -19,6 +19,23 @@ def home(request):
 @login_required
 def task_list(request):
     tasks = Task.objects.all()
+    
+    for task in tasks:
+        overlapping = False
+        task_end_date = task.start_date + task.duration
+        
+        for resource in task.resources.all():
+            overlapping_count = sum(
+                1 for t in resource.tasks.exclude(id=task.id)
+                if not (t.start_date >= task_end_date or t.start_date + t.duration <= task.start_date)
+            )
+            if overlapping_count >= resource.quantity:
+                overlapping = True
+                break
+
+        task.is_overlapping = overlapping
+        task.save()
+
     return render(request, 'task_list.html', {'tasks': tasks})
 
 @login_required
@@ -73,40 +90,33 @@ def task_detail(request, task_id):
 
 @login_required
 def task_edit(request, task_id):
-    # Obtener la tarea o mostrar 404 si no existe
     task = get_object_or_404(Task, id=task_id)
 
-    # Si se envía el formulario con datos, se procesa el formulario
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
-            # Extraer los datos de la tarea y recursos
             start_date = form.cleaned_data['start_date']
             duration = form.cleaned_data['duration']
             end_date = start_date + duration
             resources = form.cleaned_data['resources']
 
-            # Validación para evitar solapamientos de recursos
             for resource in resources:
-                overlapping_tasks = 0  # Contador para verificar solapamientos
-                for resource_task in resource.tasks.exclude(id=task.id):  # Excluye la tarea actual
-                    # Comprobamos solapamientos de fecha entre la tarea editada y otras tareas asignadas al recurso
+                overlapping_tasks = 0
+                for resource_task in resource.tasks.exclude(id=task.id):
                     if not (resource_task.start_date >= end_date or resource_task.start_date + resource_task.duration <= start_date):
                         overlapping_tasks += 1
 
-                # Verificar si el recurso está disponible en el horario solicitado
                 if overlapping_tasks >= resource.quantity:
                     messages.error(request, f"El recurso '{resource.name}' no está disponible en el horario especificado.")
                     return render(request, 'task_edit.html', {'form': form, 'task': task})
             
-            # Si no hay solapamientos, guarda la tarea actualizada
             task = form.save(commit=False)
             task.save()
-            form.save_m2m()  # Guarda la relación ManyToMany
+            form.save_m2m()
             messages.success(request, "La tarea ha sido actualizada exitosamente.")
-            return redirect('task_list')  # Redirigir a la lista de tareas después de editar
+            return redirect('task_list')
     else:
-        form = TaskForm(instance=task)  # Formulario con los datos de la tarea actual
+        form = TaskForm(instance=task)
 
     return render(request, 'task_edit.html', {'form': form, 'task': task})
 
@@ -145,9 +155,30 @@ def resource_edit(request, resource_id):
     resource = get_object_or_404(Resource, id=resource_id)
 
     if request.method == 'POST':
+        resource = get_object_or_404(Resource, id=resource_id)
+
+    if request.method == 'POST':
         form = ResourceForm(request.POST, instance=resource)
         if form.is_valid():
-            form.save()
+            new_quantity = form.cleaned_data['quantity']
+            resource = form.save()
+
+            overlapping_tasks = []
+            for task in resource.tasks.all():
+                task_end_date = task.start_date + task.duration
+
+                overlapping_count = sum(
+                    1 for t in resource.tasks.all()
+                    if not (t.start_date >= task_end_date or (t.start_date + t.duration) <= task.start_date)
+                )
+
+                if overlapping_count > new_quantity:
+                    task.is_overlapping = True
+                else:
+                    task.is_overlapping = False
+                task.save()
+            print(f"Fecha de inicio: {task.is_overlapping}")
+            messages.success(request, f"Recurso '{resource.name}' actualizado exitosamente.")
             return redirect('resource_list')
     else:
         form = ResourceForm(instance=resource)

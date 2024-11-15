@@ -46,6 +46,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     resources = models.ManyToManyField('Resource', related_name="tasks", blank=True)
     created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    is_overlapping = models.BooleanField(default=False)
 
     def end_date(self):
         return self.start_date + self.duration

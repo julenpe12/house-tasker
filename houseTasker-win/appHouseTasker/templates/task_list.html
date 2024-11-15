@@ -11,9 +11,14 @@
 
 <div class="task-container">
   {% for task in tasks %}
-    <div class="task-item">
+    <div class="task-item {% if task.is_overlapping %}task-overlapping{% else %}task-ok{% endif %}">
       <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
       <span class="priority">Prioridad: {{ task.get_priority_display }}</span>
+      {% if task.is_overlapping %}
+        <span class="status">En conflicto</span>
+      {% else %}
+        <span class="status">Normal</span>
+      {% endif %}
       <div class="task-dates">
         <span class="start-date">Inicio: {{ task.start_date|date:"d/m/Y H:i" }}</span>
         <span class="duration">Duración: {{ task.duration }}</span>
@@ -35,6 +40,7 @@
   {% empty %}
     <p>No se encontraron tareas.</p>
   {% endfor %}
+</div>
 </div>
 <div class="add-task-button-container">
   <a href="{% url 'task_create' %}" class="add-task-button">Agregar Tarea</a>
