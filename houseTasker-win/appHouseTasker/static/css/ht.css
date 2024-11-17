@@ -52,6 +52,42 @@ footer {
     font-size: 0.9em;
 }
 
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;  /* Three columns: left (empty), center (title), right (user info) */
+    align-items: center;  /* Align content vertically in the middle */
+    padding: 10px;
+    position: relative;  /* Ensure the user info stays on top */
+}
+
+.header-container h1 {
+    grid-column: 2;  /* Center the title */
+    text-align: center;
+    margin: 0;
+}
+
+.user-info {
+    grid-column: 3;  /* Place the user-info in the right-most column */
+    justify-self: end;  /* Align the user info to the right */
+}
+
+.user-info .profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-info .profile p {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav {

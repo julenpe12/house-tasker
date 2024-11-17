@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="keywords" content="HouseTasker, tasks, manager, home, house-tasker">
 		<meta name="description" content="A web page to help you organize house tasks along your roomates">
-		<meta name="author" content="Julen Peña">
+		<meta name="author" content="JulenPeña, PabloMatanzas, IkerCid">
 		<link rel="stylesheet" href="{% static 'css/ht.css' %}">
 		<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
 		{% block head %}{% endblock %}
@@ -18,16 +18,33 @@
 	<!-- https://javascript.plainenglish.io/20-header-design-html-for-website-c5cd71af6401 -->
 	<body>
 		<header>
-			<h1> {% block header-title %}HouseTasker{% endblock %}</h1>
-			<nav>
-				{% block nav %}
-				<a href="home.html">Home</a>
-				<a href="{% url 'task_list' %}">Tareas</a>
-				<a href="{% url 'resource_list' %}">Recursos</a>
-				<a href="FAQ.html">FAQ</a>
-				{% endblock %}
-			</nav>
-		</header>
+            <!-- Grid container for centering title and placing user-info to the right -->
+            <div class="header-container">
+                <h1>{% block header-title %}HouseTasker{% endblock %}</h1>
+                <div class="user-info">
+                    {% if user.is_authenticated %}
+                        <div class="profile">
+                            <p>Welcome, {{ user.username }}</p>
+                            {% if user.profile_image %}
+                                <img src="{{ user.profile_image.url }}" alt="Profile picture" class="profile-pic">
+                            {% else %}
+                                <img src="{% static 'img/default_pfp.png' %}" alt="Default profile picture" class="profile-pic">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <nav>
+                {% block nav %}
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'task_list' %}">Tareas</a>
+                <a href="{% url 'resource_list' %}">Recursos</a>
+                <a href="FAQ.html">FAQ</a>
+                {% endblock %}
+            </nav>
+        </header>
+
 		<main>
 			{% block main %}
 			
