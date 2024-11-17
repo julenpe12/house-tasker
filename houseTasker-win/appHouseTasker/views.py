@@ -12,6 +12,9 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
+def faq(request):
+    return render(request, "FAQ.html")
+
 @login_required
 def home(request):
     return render(request, 'index.html')

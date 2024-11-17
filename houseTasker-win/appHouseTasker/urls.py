@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),  # Home page for task handling
+    path('faq/', views.faq, name='faq'),
     path('tasks/', views.task_list, name='task_list'),  # List all tasks
     path('tasks/create/', views.task_create, name='task_create'),  # Create a new task
     path('tasks/<int:task_id>/', views.task_detail, name='task_detail'),  # View task details
