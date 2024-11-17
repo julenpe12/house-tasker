@@ -5,6 +5,7 @@ from . import views
 from .views import CustomLoginView, RegisterView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),  # Home page for task handling
@@ -22,6 +23,7 @@ urlpatterns = [
     
     path('accounts/login/', CustomLoginView.as_view(), name='login'),
     path('accounts/register/', RegisterView.as_view(), name='register'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 
 if settings.DEBUG:

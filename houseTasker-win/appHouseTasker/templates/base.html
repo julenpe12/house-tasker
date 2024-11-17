@@ -18,18 +18,23 @@
 	<!-- https://javascript.plainenglish.io/20-header-design-html-for-website-c5cd71af6401 -->
 	<body>
 		<header>
-            <!-- Grid container for centering title and placing user-info to the right -->
             <div class="header-container">
                 <h1>{% block header-title %}HouseTasker{% endblock %}</h1>
                 <div class="user-info">
                     {% if user.is_authenticated %}
                         <div class="profile">
-                            <p>Welcome, {{ user.username }}</p>
+                            <p>Bienvenido, {{ user.username }}</p>
                             {% if user.profile_image %}
                                 <img src="{{ user.profile_image.url }}" alt="Profile picture" class="profile-pic">
                             {% else %}
                                 <img src="{% static 'img/default_pfp.png' %}" alt="Default profile picture" class="profile-pic">
                             {% endif %}
+                        </div>
+						<div class="logout">
+                            <form method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Cerrar Sesión</button>
+                            </form>
                         </div>
                     {% endif %}
                 </div>
