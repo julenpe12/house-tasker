@@ -17,7 +17,9 @@ def faq(request):
 
 @login_required
 def home(request):
-    return render(request, 'index.html')
+    task = Task.objects.filter(completed=False).order_by('start_date').first()
+    closest_task = [task]
+    return render(request, 'index.html', {'closest_task': closest_task})
 
 @login_required
 def task_list(request):
