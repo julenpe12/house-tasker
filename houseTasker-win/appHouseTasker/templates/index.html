@@ -16,6 +16,7 @@
 		<h2 class="sectionTitle">Tarea Proxima</h2>
 		<p class="sectionText">¡¡¡Tarea más próxima sin completar!!!</p>
 		<div class="task-container">
+			{% if closest_task %}
 			{% for task in closest_task %}
 			  <div class="task-item {% if task.is_overlapping %}task-overlapping{% else %}task-ok{% endif %}">
 				<a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
@@ -46,6 +47,9 @@
 			{% empty %}
 			  <p>No se encontraron tareas.</p>
 			{% endfor %}
+			{% else %}
+    		  <p>No hay tareas disponibles.</p>
+  			{% endif %}
 		</div>
 	</section>
 </div>
