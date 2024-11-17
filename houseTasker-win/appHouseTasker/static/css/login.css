@@ -43,3 +43,19 @@ button:hover {
     font-size: 0.9em;
     color: #666;
 }
+
+.register-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-btn {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.register-btn:hover {
+    color: #0056b3;
+}
