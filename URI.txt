@@ -1,0 +1,8 @@
+URI:
+https://github.com/julenpe12/house-tasker
+
+Te hemos compartido el repositorio en la cuenta de "dbujan", si hubiera algún problema por favor avísanos
+
+Puedes crear una cuenta o utilizar las siguientes credenciales:
+Username: dbujan
+Password: passwordDBujan

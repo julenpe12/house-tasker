@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block main %}
-<form action="/accounts/register/" method="POST" enctype="multipart/form-data">
-	<input type="hidden" name="csrfmiddlewaretoken" value="lDnnteu3TRZvgnkxjbDDtPR12D8ShKXATUfAqRM7znBHZMYNmJwDoqpIxXL31REl">
+<form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
 	<!-- Logo of the web -->
 	<div class="imageContainer">
 		<!-- <img src="resources/favicon.png" alt="Logo" class="logo"> -->
@@ -15,57 +15,7 @@
 	<!-- Login form -->
 	<fieldset class="loginFieldset">
 		<legend>Iniciar sesión</legend>
-		<p>
-    <label for="id_username">Username:</label>
-    <input type="text" name="username" maxlength="150" autofocus required aria-describedby="id_username_helptext" id="id_username">
-    
-      <span class="helptext" id="id_username_helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-    
-    
-  </p>
-
-  
-  <p>
-    <label for="id_email">Email address:</label>
-    <input type="email" name="email" maxlength="254" id="id_email">
-    
-    
-  </p>
-
-  
-  <p>
-    <label for="id_profile_image">Profile image:</label>
-    <input type="file" name="profile_image" accept="image/*" id="id_profile_image">
-    
-    
-  </p>
-
-  
-<p>
-  <label for="id_password1">Password:</label>
-  <input type="password" name="password1" autocomplete="new-password" aria-describedby="id_password1_helptext" id="id_password1">
-</p>
-<div class="helptext" id="id_password1_helptext">
-  <ul>
-    <li>Your password can’t be too similar to your other personal information.</li>
-    <li>Your password must contain at least 8 characters.</li>
-    <li>Your password can’t be a commonly used password.</li>
-    <li>Your password can’t be entirely numeric.</li>
-  </ul>
-</div>
-
-
-  
-  <p>
-    <label for="id_password2">Password confirmation:</label>
-    <input type="password" name="password2" autocomplete="new-password" aria-describedby="id_password2_helptext" id="id_password2">
-    
-      <span class="helptext" id="id_password2_helptext">Enter the same password as before, for verification.</span>
-    
-    
-      
-    
-  </p>  <!-- Renders the form fields with Django's default styling -->
+		{{ form.as_p }}  <!-- Renders the form fields with Django's default styling -->
 		<button type="submit">Register</button>
 	</fieldset>
 </form>
