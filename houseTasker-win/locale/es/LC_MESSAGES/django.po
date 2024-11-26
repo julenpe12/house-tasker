@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 17:30+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: appHouseTasker/templates/FAQ.html:9
+msgid "Qué es HouseTasker"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:10
+msgid ""
+"HouseTasker es una plataforma web diseñada para ayudarte a gestionar las "
+"tareas del hogar de manera eficiente. Puedes asignar tareas, rastrear "
+"recursos y organizar las tareas entre tus compañeros de casa"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:12
+msgid "Cómo puedo crear una tarea"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:13
+msgid ""
+"Para crear una tarea, navega a la sección 'Tareas' y haz clic en 'Crear "
+"nueva tarea'. Completa el formulario con los detalles de la tarea, como el "
+"título, la prioridad y los recursos, y luego guárdala"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:15
+msgid "Puedo añadir diferentes recursos a las tareas"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:16
+msgid "Sí, puedes asociar varios recursos disponibles presionando el"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:16
+msgid "y clicando en las tareas"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:18
+msgid "Cómo puedo iniciar sesión"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:19
+msgid ""
+"Introduce tu nombre de usuario y contraseña, y luego haz clic en 'Iniciar "
+"sesión'. Si no tienes una cuenta, puedes registrarte haciendo clic en "
+"'Regístrate aquí' en la página de inicio de sesión"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:21
+msgid "Cómo puedo cerrar sesión"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:22
+msgid ""
+"Haz clic en el botón 'Cerrar sesión' en la esquina superior derecha debajo "
+"de tu información de perfil"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:24
+msgid "Por qué salen tareas en rojo"
+msgstr ""
+
+#: appHouseTasker/templates/FAQ.html:25
+msgid ""
+"Cuando un recurso previamente asignado a un número X de tareas pasa a tener "
+"una cantidad menor de X, las tareas con ese recurso asignado pasarán a estar "
+"en rojo"
+msgstr ""
+
+#: appHouseTasker/templates/base.html:27
+msgid "Bienvenido"
+msgstr ""
+
+#: appHouseTasker/templates/base.html:42
+msgid "Cambiar idioma"
+msgstr "Cambiar idioma"
+
+#: appHouseTasker/templates/base.html:49
+msgid "Cerrar Sesión"
+msgstr ""
+
+#: appHouseTasker/templates/base.html:59
+msgid "Tareas"
+msgstr ""
+
+#: appHouseTasker/templates/base.html:60
+#: appHouseTasker/templates/task_list.html:29
+msgid "Recursos"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:20
+msgid "Tarea Proxima"
+msgstr "Tarea Proxima"
+
+#: appHouseTasker/templates/index.html:21
+msgid "¡¡¡Tarea más próxima sin completar!!!"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:27
+msgid "Prioridad:"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:29
+#: appHouseTasker/templates/task_list.html:19
+msgid "En conflicto"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:31
+#: appHouseTasker/templates/task_list.html:21
+msgid "Normal"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:34
+#: appHouseTasker/templates/task_list.html:24
+msgid "Inicio"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:35
+#: appHouseTasker/templates/task_list.html:25
+msgid "Duración"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:36
+#: appHouseTasker/templates/task_list.html:26
+msgid "Fin"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:39
+msgid "Recursos:"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:43
+#: appHouseTasker/templates/task_list.html:33
+msgid "disponibles"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:47
+#: appHouseTasker/templates/task_list.html:37
+msgid "No se asignaron recursos a esta tarea"
+msgstr ""
+
+#: appHouseTasker/templates/index.html:52
+#: appHouseTasker/templates/task_list.html:42
+msgid "No se encontraron tareas"
+msgstr ""
+
+#: appHouseTasker/templates/login.html:18
+#: appHouseTasker/templates/login.html:20
+#: appHouseTasker/templates/register.html:17
+msgid "Iniciar sesión"
+msgstr ""
+
+#: appHouseTasker/templates/login.html:26
+msgid "No tienes una cuenta"
+msgstr ""
+
+#: appHouseTasker/templates/login.html:26
+msgid "Regístrate aquí"
+msgstr ""
+
+#: appHouseTasker/templates/register.html:19
+msgid "Register"
+msgstr ""
+
+#: appHouseTasker/templates/resource_create.html:5
+#: appHouseTasker/templates/resource_create.html:11
+#: appHouseTasker/templates/resource_list.html:26
+msgid "Agregar Recurso"
+msgstr ""
+
+#: appHouseTasker/templates/resource_create.html:14
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Lista de Recursos"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/resource_delete.html:5
+msgid "Resource Delete"
+msgstr ""
+
+#: appHouseTasker/templates/resource_delete.html:6
+msgid "El recurso no se ha podido eliminar"
+msgstr ""
+
+#: appHouseTasker/templates/resource_delete.html:7
+msgid "Volver a la lista de recursos"
+msgstr ""
+
+#: appHouseTasker/templates/resource_delete.html:9
+msgid "No existe este recurso"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:6
+msgid "Resource Detail"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:8
+msgid "Cantidad"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:9
+#: appHouseTasker/templates/resource_list.html:18
+msgid "Categoría"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:10
+msgid "Descripción"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:12
+msgid "Back to Resource List"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:16
+#: appHouseTasker/templates/task_detail.html:48
+msgid "Borrar"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:20
+#: appHouseTasker/templates/resource_edit.html:5
+msgid "Editar Recurso"
+msgstr ""
+
+#: appHouseTasker/templates/resource_detail.html:23
+#: appHouseTasker/templates/task_delete.html:9
+#: appHouseTasker/templates/task_detail.html:54
+msgid "No existe esta tarea"
+msgstr ""
+
+#: appHouseTasker/templates/resource_edit.html:9
+#: appHouseTasker/templates/task_edit.html:8
+msgid "Guardar cambios"
+msgstr ""
+
+#: appHouseTasker/templates/resource_edit.html:11
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Lista de recursos"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/resource_list.html:11
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Lista Recursos"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/resource_list.html:21
+msgid "No se encontraron recursos"
+msgstr ""
+
+#: appHouseTasker/templates/task_create.html:5
+#: appHouseTasker/templates/task_create.html:9
+msgid "Crear Tarea"
+msgstr ""
+
+#: appHouseTasker/templates/task_create.html:11
+#: appHouseTasker/templates/task_edit.html:10
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Lista de tareas"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/task_delete.html:5
+msgid "Task Delete"
+msgstr ""
+
+#: appHouseTasker/templates/task_delete.html:6
+msgid "La tarea no se ha podido eliminar"
+msgstr ""
+
+#: appHouseTasker/templates/task_delete.html:7
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Volver a la lista de tareas"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/task_detail.html:15
+msgid "Task Detail"
+msgstr ""
+
+#: appHouseTasker/templates/task_detail.html:18
+msgid "Description"
+msgstr ""
+
+#: appHouseTasker/templates/task_detail.html:51
+#: appHouseTasker/templates/task_edit.html:4
+#, fuzzy
+#| msgid "Lista de Tareas"
+msgid "Editar Tarea"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/task_list.html:11
+msgid "Lista de Tareas"
+msgstr "Lista de Tareas"
+
+#: appHouseTasker/templates/task_list.html:17
+msgid "Prioridad"
+msgstr ""
+
+#: appHouseTasker/templates/task_list.html:47
+msgid "Agregar Tarea"
+msgstr ""
