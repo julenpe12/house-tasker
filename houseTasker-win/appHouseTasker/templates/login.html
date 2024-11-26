@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block nav %}
+{% load i18n %}
 
 {% endblock %}
 
@@ -14,14 +15,14 @@
 	
 	<!-- Login form -->
 	<fieldset class="loginFieldset">
-		<legend>Iniciar sesión</legend>
+		<legend>{% trans "Iniciar sesión" %}</legend>
 		{{ form.as_p }}  <!-- Renderiza el formulario de autenticación de Django -->
-		<button type="submit">Iniciar sesión</button><br>
+		<button type="submit">{% trans "Iniciar sesión" %}</button><br>
 		<label class="indexText"><input type="checkbox" checked="checked" name="remember">Remember me</label>
 	</fieldset>
 </form>
 
 <div class="register-link">
-    <p>¿No tienes una cuenta? <a href="{% url 'register' %}" class="register-btn">Regístrate aquí</a></p>
+    <p>¿{% trans "No tienes una cuenta" %}? <a href="{% url 'register' %}" class="register-btn">{% trans "Regístrate aquí" %}</a></p>
 </div>
 {% endblock %}

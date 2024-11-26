@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -23,17 +24,29 @@
                 <div class="user-info">
                     {% if user.is_authenticated %}
                         <div class="profile">
-                            <p>Bienvenido, {{ user.username }}</p>
+                            <p>{% trans "Bienvenido" %}, {{ user.username }}</p>
                             {% if user.profile_image %}
                                 <img src="{{ user.profile_image.url }}" alt="Profile picture" class="profile-pic">
                             {% else %}
                                 <img src="{% static 'img/default_pfp.png' %}" alt="Default profile picture" class="profile-pic">
                             {% endif %}
                         </div>
-						<div class="logout">
+                        
+                        <div class="language-form">
+                            <form method="post" action="{% url 'set_language' %}">
+                                {% csrf_token %}
+                                <select name="language">
+                                    <option value="en" {% if LANGUAGE_CODE == "en" %}selected{% endif %}>English</option>
+                                    <option value="es" {% if LANGUAGE_CODE == "es" %}selected{% endif %}>Español</option>
+                                </select>
+                                <button type="submit">{% trans "Cambiar idioma" %}</button>
+                            </form>
+                        </div>
+                        
+                        <div class="logout">
                             <form method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
-                                <button type="submit" class="logout-btn">Cerrar Sesión</button>
+                                <button type="submit" class="logout-btn">{%trans "Cerrar Sesión" %}</button>
                             </form>
                         </div>
                     {% endif %}
@@ -43,8 +56,8 @@
             <nav>
                 {% block nav %}
                 <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'task_list' %}">Tareas</a>
-                <a href="{% url 'resource_list' %}">Recursos</a>
+                <a href="{% url 'task_list' %}">{% trans "Tareas" %}</a>
+                <a href="{% url 'resource_list' %}">{% trans "Recursos" %}</a>
                 <a href="{% url 'faq' %}">FAQ</a>
                 {% endblock %}
             </nav>

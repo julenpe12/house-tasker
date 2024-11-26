@@ -1,48 +1,54 @@
 {% extends "base.html" %}
 
+
 {% load static %}
+{% load i18n %}
+
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/task_list.css' %}">
 {% endblock %}
 
+
 {% block main %}
-<h2>Lista de Tareas</h2>
+<h2>{% trans "Lista de Tareas" %}</h2>
+
 
 <div class="task-container">
   {% for task in tasks %}
     <div class="task-item {% if task.is_overlapping %}task-overlapping{% else %}task-ok{% endif %}">
       <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
-      <span class="priority">Prioridad: {{ task.get_priority_display }}</span>
+      <span class="priority">{% trans "Prioridad" %}: {{ task.get_priority_display }}</span>
       {% if task.is_overlapping %}
-        <span class="status">En conflicto</span>
+        <span class="status">{% trans "En conflicto" %}</span>
       {% else %}
-        <span class="status">Normal</span>
+        <span class="status">{% trans "Normal" %}</span>
       {% endif %}
       <div class="task-dates">
-        <span class="start-date">Inicio: {{ task.start_date|date:"d/m/Y H:i" }}</span>
-        <span class="duration">Duración: {{ task.duration }}</span>
-        <span class="end-date">Fin: {{ task.end_date|date:"d/m/Y H:i" }}</span>
+        <span class="start-date">{% trans "Inicio" %}: {{ task.start_date|date:"d/m/Y H:i" }}</span>
+        <span class="duration">{% trans "Duración" %}: {{ task.duration }}</span>
+        <span class="end-date">{% trans "Fin" %}: {{ task.end_date|date:"d/m/Y H:i" }}</span>
       </div>
       <div class="task-resources">
-        <strong>Recursos:</strong>
+        <strong>{% trans "Recursos" %}:</strong>
         {% if task.resources.all %}
           <ul>
             {% for resource in task.resources.all %}
-              <li>{{ resource.name }} ({{ resource.quantity }} disponibles)</li>
+              <li>{{ resource.name }} ({{ resource.quantity }} {% trans "disponibles" %})</li>
             {% endfor %}
           </ul>
         {% else %}
-          <p>No se asignaron recursos a esta tarea.</p>
+          <p>{% trans "No se asignaron recursos a esta tarea" %}.</p>
         {% endif %}
       </div>
     </div>
   {% empty %}
-    <p>No se encontraron tareas.</p>
+    <p>{% trans "No se encontraron tareas" %}.</p>
   {% endfor %}
 </div>
 
+
 <div class="add-task-button-container">
-  <a href="{% url 'task_create' %}" class="add-task-button">Agregar Tarea</a>
+  <a href="{% url 'task_create' %}" class="add-task-button">{% trans "Agregar Tarea" %}</a>
 </div>
 {% endblock %}

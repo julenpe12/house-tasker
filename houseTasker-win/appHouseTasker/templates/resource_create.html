@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block main %}
-  <h2>Agregar Recurso</h2>
-  
+  <h2>{% trans "Agregar Recurso" %}</h2>
+
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    
-    <button type="submit">Agregar Recurso</button>
+
+    <button type="submit">{% trans "Agregar Recurso" %}</button>
   </form>
 
-  <a href="{% url 'resource_list' %}">Lista de Recursos</a>
+  <a href="{% url 'resource_list' %}">{% trans "Lista de Recursos" %}</a>
 {% endblock %}

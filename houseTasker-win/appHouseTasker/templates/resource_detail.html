@@ -1,23 +1,25 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 {% block main %}
 	{% if resource %}
-		<h2>Resource Detail</h2>
+		<h2>{% trans "Resource Detail" %}</h2>
 		<h3>{{ resource.name }}</h3>
-		<p><strong>Cantidad:</strong> {{ resource.quantity }}</p>
-		<p><strong>Categoría:</strong> {{ resource.get_category_display }}</p>
-		<p><strong>Descripción:</strong> {{ resource.description }}</p>
-		
-		<a href="{% url 'resource_list' %}">Back to Resource List</a>
-		
+		<p><strong>{% trans "Cantidad" %}:</strong> {{ resource.quantity }}</p>
+		<p><strong>{% trans "Categoría" %}:</strong> {{ resource.get_category_display }}</p>
+		<p><strong>{% trans "Descripción" %}:</strong> {{ resource.description }}</p>
+
+		<a href="{% url 'resource_list' %}">{% trans "Back to Resource List" %}</a>
+
 		<form action="{% url 'resource_delete' resource.id %}" method="post">
 			{% csrf_token %}
-			<button type="submit" class="btn btn-danger">Borrar</button>
+			<button type="submit" class="btn btn-danger">{% trans "Borrar" %}</button>
 		</form>
 
 		<div class="edit-resource-button-container">
-			<a href="{% url 'resource_edit' resource.id %}" class="edit-resource-button">Editar Recurso</a>
+			<a href="{% url 'resource_edit' resource.id %}" class="edit-resource-button">{% trans "Editar Recurso" %}</a>
 		</div>
 	{% else %}
-		<p>No existe esta tarea.</p>
+		<p>{% trans "No existe esta tarea" %}.</p>
 	{% endif %}
 {% endblock %}

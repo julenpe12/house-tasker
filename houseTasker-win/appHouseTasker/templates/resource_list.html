@@ -1,27 +1,28 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load i18n %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/resource_list.css' %}">
 {% endblock %}
 
 {% block main %}
-	<h2>Lista Recursos</h2>
-  
-	<div class="resource-container">
-	  {% for resource in resources %}
-		<div class="resource-item">
-		  <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-		  <span class="quantity-box">{{ resource.quantity }}</span><br>
-		  <span class="category">Categoría: {{ resource.get_category_display }}</span>
-		</div>
-	  {% empty %}
-		<p>No se encontraron recursos.</p>
-	  {% endfor %}
-	</div>
-	
-	<div class="add-resource-button-container">
-	  <a href="{% url 'resource_create' %}" class="add-resource-button">Agregar Recurso</a>
-	</div>
+<h2>{% trans "Lista Recursos" %}</h2>
+
+<div class="resource-container">
+  {% for resource in resources %}
+<div class="resource-item">
+  <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+  <span class="quantity-box">{{ resource.quantity }}</span><br>
+  <span class="category">{% trans "Categoría" %}: {{ resource.get_category_display }}</span>
+</div>
+  {% empty %}
+<p>{% trans "No se encontraron recursos" %}.</p>
+  {% endfor %}
+</div>
+
+<div class="add-resource-button-container">
+  <a href="{% url 'resource_create' %}" class="add-resource-button">{% trans "Agregar Recurso" %}</a>
+</div>
 {% endblock %}

@@ -1,9 +1,11 @@
+{% load i18n %}
+
 {% block main %}
 	{% if task %}
-		<h2>Task Delete</h2>
-		<p>La tarea no se ha podido eliminar.</p>
-		<a href="{% url 'view_tasks' %}">Volver a la lista de tareas</a>
+		<h2>{% trans "Task Delete" %}</h2>
+		<p>{% trans "La tarea no se ha podido eliminar"  %}.</p>
+		<a href="{% url 'view_tasks' %}">{% trans "Volver a la lista de tareas" %}</a>
 	{% else %}
-		<p>No existe esta tarea.</p>
+		<p>{% trans "No existe esta tarea" %}.</p>
 	{% endif %}
 {% endblock %}

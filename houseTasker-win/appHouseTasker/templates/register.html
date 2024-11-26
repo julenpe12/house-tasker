@@ -1,22 +1,18 @@
-{% extends "base.html" %}
-
-{% block nav %}
-
-{% endblock %}
-
-{% block main %}
+{% extends "base.html" %} {% block nav %} {% load i18n %} {% endblock %} {%
+block main %}
 <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
-	<!-- Logo of the web -->
-	<div class="imageContainer">
-		<!-- <img src="resources/favicon.png" alt="Logo" class="logo"> -->
-	</div>
-	
-	<!-- Login form -->
-	<fieldset class="loginFieldset">
-		<legend>Iniciar sesión</legend>
-		{{ form.as_p }}  <!-- Renders the form fields with Django's default styling -->
-		<button type="submit">Register</button>
-	</fieldset>
+  {% csrf_token %}
+  <!-- Logo of the web -->
+  <div class="imageContainer">
+    <!-- <img src="resources/favicon.png" alt="Logo" class="logo"> -->
+  </div>
+
+  <!-- Login form -->
+  <fieldset class="loginFieldset">
+    <legend>{% trans "Iniciar sesiÃ³n" %}</legend>
+    {{ form.as_p }}
+    <!-- Renders the form fields with Django's default styling -->
+    <button type="submit">{% trans "Register" %}</button>
+  </fieldset>
 </form>
 {% endblock %}

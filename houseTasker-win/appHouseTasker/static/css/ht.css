@@ -111,6 +111,47 @@ footer {
     outline: none;
 }
 
+/* Contenedor general del formulario */
+.language-form {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente */
+    justify-content: flex-start; /* Alinea todo hacia la izquierda */
+    gap: 10px; /* Espaciado entre los elementos */
+    margin-left: 10px; /* Espaciado desde el borde izquierdo */
+}
+
+/* Estilo del select */
+.language-form select {
+    border: 1px solid #ccc; /* Borde suave */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 12px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    background-color: #f9f9f9; /* Fondo claro */
+    transition: border-color 0.3s ease; /* Transición suave al hacer foco */
+}
+
+.language-form select:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+    outline: none; /* Elimina el contorno adicional */
+}
+
+/* Estilo del botón */
+.language-form button {
+    background-color: #007bff; /* Fondo azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 15px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de texto */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.language-form button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav {

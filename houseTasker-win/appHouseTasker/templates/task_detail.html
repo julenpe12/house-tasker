@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% load i18n %}
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/task_detail.css' %}">
 {% endblock %}
 
 {% block main %}
 	{% if task %}
-		<h2>Task Detail</h2>
+		<h2>{% trans "Task Detail" %}</h2>
 		<h3>{{ task.title }}</h3>
 	
-		<p><strong>Description:</strong> {{ task.description|default:"No description provided" }}</p>
+		<p><strong>{% trans "Description" %}:</strong> {{ task.description|default:"No description provided" }}</p>
 	  
 		<p><strong>Priority:</strong> 
 			{% if task.priority == task.LOW %}Low
@@ -39,12 +41,12 @@
 		
 		<form action="{% url 'task_delete' task.id %}" method="post">
 			{% csrf_token %}
-			<button type="submit" class="btn btn-danger">Borrar</button>
+			<button type="submit" class="btn btn-danger">{% trans "Borrar" %}</button>
 		</form>
 		<div class="edit-task-button-container">
-			<a href="{% url 'task_edit' task.id %}" class="edit-task-button">Editar Tarea</a>
+			<a href="{% url 'task_edit' task.id %}" class="edit-task-button">{% trans "Editar Tarea" %}</a>
 		</div>
 	{% else %}
-		<p>No existe esta tarea.</p>
+		<p>{% trans "No existe esta tarea" %}.</p>
 	{% endif %}
 {% endblock %}
