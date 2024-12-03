@@ -10,7 +10,7 @@ from .forms import TaskForm
 from .forms import CustomUserCreationForm, ResourceForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-
+from django.db.models import Min
 
 class FAQView(TemplateView):
     template_name = "FAQ.html"
@@ -21,10 +21,26 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         task = Task.objects.filter(completed=False).order_by('start_date').first()
         context['closest_task'] = [task] if task else []
-        return context
 
+        tasks_by_user = (
+            Task.objects.filter(completed=False)
+            .values('created_by')
+            .annotate(next_task_date=Min('start_date'))
+        )
+
+        closest_tasks = [
+            Task.objects.filter(
+                created_by=task['created_by'],
+                start_date=task['next_task_date']
+            ).first()
+            for task in tasks_by_user
+        ]
+
+        context['closest_tasks'] = closest_tasks
+        return context
 
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task

@@ -56,6 +56,32 @@
             {% endif %}
         </div>
     </section>
+    <section>
+      <h2 class="sectionTitle">{% trans "Tareas más próximas por usuario" %}</h2>
+      <div class="task-container">
+          {% if closest_tasks %}
+              {% for task in closest_tasks %}
+                <div class="task-item {% if task.is_overlapping %}task-overlapping{% else %}task-ok{% endif %}">
+                  <h3>{% trans "Usuario" %}: {{ task.created_by.username }}</h3>
+                  <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+                  <span class="priority">{% trans "Prioridad:" %} {{ task.get_priority_display }}</span>
+                  {% if task.is_overlapping %}
+                    <span class="status">{% trans "En conflicto" %}</span>
+                  {% else %}
+                    <span class="status">{% trans "Normal" %}</span>
+                  {% endif %}
+                  <div class="task-dates">
+                    <span class="start-date">{% trans "Inicio" %}: {{ task.start_date|date:"d/m/Y H:i" }}</span>
+                    <span class="duration">{% trans "Duración" %}: {{ task.duration }}</span>
+                    <span class="end-date">{% trans "Fin" %}: {{ task.end_date|date:"d/m/Y H:i" }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+          {% else %}
+              <p>{% trans "No hay tareas próximas disponibles" %}.</p>
+          {% endif %}
+      </div>
+  </section>
 </div>
 <aside>
     <h2 class="asideH1">Filter by day (WORK IN PROGRESS)</h2>
