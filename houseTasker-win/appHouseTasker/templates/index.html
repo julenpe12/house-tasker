@@ -40,7 +40,12 @@
                   {% if task.resources.all %}
                     <ul>
                       {% for resource in task.resources.all %}
-                        <li>{{ resource.name }} ({{ resource.quantity }} {% trans "disponibles" %})</li>
+                      <li class="resource-item">
+                        <a href="{% url 'resource_detail' resource.id %}" class="resource-link">
+                          {{ resource.name }}
+                        </a> 
+                        <span class="quantity-box">({{ resource.quantity }} {% trans "disponibles" %})</span>
+                      </li>
                       {% endfor %}
                     </ul>
                   {% else %}
@@ -74,6 +79,23 @@
                     <span class="start-date">{% trans "Inicio" %}: {{ task.start_date|date:"d/m/Y H:i" }}</span>
                     <span class="duration">{% trans "Duración" %}: {{ task.duration }}</span>
                     <span class="end-date">{% trans "Fin" %}: {{ task.end_date|date:"d/m/Y H:i" }}</span>
+                  </div>
+                  <div class="task-resources">
+                    <strong>{% trans "Recursos" %}:</strong>
+                    {% if task.resources.all %}
+                      <ul class="resource-container">
+                        {% for resource in task.resources.all %}
+                          <li class="resource-item">
+                            <a href="{% url 'resource_detail' resource.id %}" class="resource-link">
+                              {{ resource.name }}
+                            </a> 
+                            <span class="quantity-box">({{ resource.quantity }} {% trans "disponibles" %})</span>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% else %}
+                      <p>{% trans "No se asignaron recursos a esta tarea" %}.</p>
+                    {% endif %}
                   </div>
                 </div>
               {% endfor %}

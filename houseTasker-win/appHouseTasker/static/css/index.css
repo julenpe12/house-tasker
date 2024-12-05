@@ -116,6 +116,32 @@ aside {
     color: #3c763d; /* Texto del título verde */
 }
 
+/* Contenedor de lista de recursos */
+.task-resources {
+    margin-top: 10px; /* Espaciado superior para separar de otras secciones */
+    font-size: 14px; /* Tamaño de letra más pequeño */
+}
+
+/* Estilos específicos para los enlaces de recursos en tareas en conflicto */
+.task-overlapping .resource-link {
+    font-weight: normal;
+    color: #000; /* Color rojo */
+}
+
+/* Estilos específicos para los enlaces de recursos en tareas normales */
+.task-ok .resource-link {
+    font-weight: normal;
+    color: #000; /* Color verde */
+}
+
+/* Caja de cantidad de recursos */
+.quantity-box {
+    background-color: transparent;
+    color: #000;;
+    font-size: 13px;
+    font-weight: normal;
+}
+
 /* Estilos responsivos */
 @media only screen and (max-width: 400px) {
     .task-item a {

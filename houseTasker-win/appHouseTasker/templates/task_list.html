@@ -1,23 +1,18 @@
 {% extends "base.html" %}
-
-
 {% load static %}
 {% load i18n %}
-
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/task_list.css' %}">
 {% endblock %}
 
-
 {% block main %}
 <h2>{% trans "Lista de Tareas" %}</h2>
-
 
 <div class="task-container">
   {% for task in tasks %}
     <div class="task-item {% if task.is_overlapping %}task-overlapping{% else %}task-ok{% endif %}">
-      <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+      <a href="{% url 'task_detail' task.id %}" class="task-title">{{ task.title }}</a>
       <span class="priority">{% trans "Prioridad" %}: {{ task.get_priority_display }}</span>
       {% if task.is_overlapping %}
         <span class="status">{% trans "En conflicto" %}</span>
@@ -32,9 +27,14 @@
       <div class="task-resources">
         <strong>{% trans "Recursos" %}:</strong>
         {% if task.resources.all %}
-          <ul>
+          <ul class="resource-container">
             {% for resource in task.resources.all %}
-              <li>{{ resource.name }} ({{ resource.quantity }} {% trans "disponibles" %})</li>
+              <li class="resource-item">
+                <a href="{% url 'resource_detail' resource.id %}" class="resource-link">
+                  {{ resource.name }}
+                </a> 
+                <span class="quantity-box">({{ resource.quantity }} {% trans "disponibles" %})</span>
+              </li>
             {% endfor %}
           </ul>
         {% else %}
@@ -46,7 +46,6 @@
     <p>{% trans "No se encontraron tareas" %}.</p>
   {% endfor %}
 </div>
-
 
 <div class="add-task-button-container">
   <a href="{% url 'task_create' %}" class="add-task-button">{% trans "Agregar Tarea" %}</a>
